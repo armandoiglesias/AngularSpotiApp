@@ -1,0 +1,65 @@
+<!-- <pre>
+{{artista | json}}
+</pre> -->
+
+<!-- <pre>
+{{pistas | json}}
+</pre> -->
+<div *ngIf="artista" class="">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-fluid img-circle"
+      src="{{artista.images | sinfoto}}" alt="Card image cap">
+    </div>
+    <div class="col-md-9">
+      <div class="card bg-primary">
+        <div class="card-body">
+          <h4 class="card-title">{{artista.name}}</h4>
+        </div>
+        <br>
+      </div>
+      <button [routerLink]="['/buscar']" class="btn btn-info" type="button" name="button">Volver a la busqueda</button>
+      <a [href]="artista.external_urls?.spotify" class="btn btn-info" target="_blank">Ver en Spotify</a>
+    </div>
+
+  </div>
+  </div>
+  <div class="" *ngIf="pistas">
+
+  <br>
+  <h3>Top Tracks</h3>
+  <hr>
+  <table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Foto</th>
+      <th>Nombre</th>
+      <th>Popularidad</th>
+      <th>Preview</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of pistas; let i =index">
+      <th scope="row">{{i +1}}</th>
+      <td>
+        <img class="img-fluid img-thumbnail"
+        src="{{item.album?.images | sinfoto}}" alt="Card image cap">
+      </td>
+      <td>{{item.name}}</td>
+      <td>{{item.popularity}}</td>
+      <td>
+<!-- <audio controls>
+  <source [src]="item.preview_url" />
+</audio> -->
+
+<iframe [src]="item.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
